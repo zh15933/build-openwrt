@@ -16,15 +16,15 @@ on:
       wxtz:
         description: '微信通知'
         required: false
-        default: 'wxtz-actions'
+        default: 'wxtz'
       release:
         description: '发布固件'
         required: false
-        default: 'release-actions'
+        default: 'release'
 
 #定时触发开始编译(把下面两个#去掉开启,时间设置请看定时编译说明)
-#  schedule:
-#    - cron: 0 8 */5 * *
+  schedule:
+    - cron: 0 8 * * *
 
 env: 
   REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
