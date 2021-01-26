@@ -8,6 +8,6 @@
 # 想要什么插件就单独的拉取什么插件就好，或者告诉我，我把插件放我的插件包就行了
 # 软件包地址：https://github.com/281677160/openwrt-package
 
-git clone https://github.com/esirplayground/luci-app-LingTiGameAcc
+git clone https://github.com/esirplayground/luci-app-LingTiGameAcc package
 
-git clone https://github.com/esirplayground/LingTiGameAcc
+git clone https://github.com/esirplayground/LingTiGameAcc package
