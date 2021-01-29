@@ -11,3 +11,7 @@
 git clone https://github.com/esirplayground/luci-app-LingTiGameAcc package/luci-app-LingTiGameAcc
 
 git clone https://github.com/esirplayground/LingTiGameAcc package/LingTiGameAcc
+
+git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
+
+git clone https://github.com/garypang13/luci-app-dnsfilter package/luci-app dnsfilter
