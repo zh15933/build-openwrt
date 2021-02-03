@@ -45,7 +45,7 @@ jobs:
       matrix:
         target: [Lede_x86_64]
 
-     # [Lede_x86_64,Lede_gl_mt300n_v2,Lede_nanopi_r2s,Lede_nanopi_r4s,Lede_newifi_d2,p2w_r619ac_128m,Lede_phicomm_k2p,Lede_phicomm_n1,Lede_redmi_ac2100,Lede_wankeyun,Lede_wndr3800,Lede_wndr4300_v1,Lede_wr703n_v1,Lede_xiaomi_r3pro,Lede_xiaoyu_c5]
+     # [Lede_x86_64,Lede_gl_mt300n_v2,Lede_nanopi_r2s,Lede_nanopi_r4s,Lede_newifi_d2,p2w_r619ac_128m,Lede_phicomm_k2p,Lede_phicomm_n1,Lede_redmi_ac2100,Lede_wankeyun,Lede_wndr3800,Lede_wndr4300_v1,Lede_wr703n_v1,Lede_xiaomi_r3pro,Lede_xiaoyu_c5,Lede_Raspberry_Pi4]
      
      # [Lienol_phicomm_k2p,Lienol_phicomm_k3,Lienol_x86_64]
      
@@ -53,7 +53,7 @@ jobs:
      
      # [openwrt] 
      
-     # 除了编译【openwrt】机型外，其他机型都直接打入了常用插件了，不需要自己再拉取插件，除非我的插件包跟源码自带的都没有，你就自己添加吧。
+     # 除了编译【openwrt】机型外，其他机型都直接打入了常用插件了，不需要自己再拉取插件，除非我的插件包跟源码自带的都没有，你就自己添加吧，说明的《各种命令的简单介绍》有教程。
      # 选择编译【openwrt】纯天然不经任何修改的，增加插件可以在diy-1.sh增加，也可在settings.ini里修改成你想要编译的源码跟分支。
      # 选择【Lede_phicomm_n1或Project_phicomm_n1】的机型文件夹编译的话，会自动编译出（ N1、微加云、贝壳云、我家云、S9xxx ）固件。
 
@@ -107,7 +107,6 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         cd openwrt
         if [ ${{matrix.target}} != openwrt ]; then
-          sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
           rm -rf package/lienol/luci-app-timecontrol
           rm -rf package/ntlf9t/{smartdns,luci-app-smartdns}
           rm -rf package/ctcgfw/{luci-app-argon-config,luci-theme-argonv3}
@@ -154,8 +153,6 @@ jobs:
         elif [ $REPO_URL == "https://github.com/project-openwrt/openwrt" ]; then
          echo "NAME2=Project-" >> $GITHUB_ENV
          echo "ZUOZHE=CTCGFW" >> $GITHUB_ENV
-        elif [ $REPO_URL == "https://github.com/openwrt/openwrt" ]; then
-         echo "NAME2=Official-" >> $GITHUB_ENV
         fi
         rm -rf {LICENSE,README,README.md}
         rm -rf ./*/{LICENSE,README,README.md}
@@ -191,15 +188,13 @@ jobs:
         echo "date=$(date "+%y.%m.%d-%H%M")" >> $GITHUB_ENV
         echo "date1=$(date "+%Y年%m月%d号-%H点%M分")" >> $GITHUB_ENV
         echo "date2=$(date "+%Y%m%d%H%M%S")" >> $GITHUB_ENV
-        DEVICE=$(egrep -o "CONFIG_TARGET.*DEVICE.*=y" .config | sed -r 's/.*(.*)=y/\0/')
-        DEVICE2=$(egrep -o "CONFIG_TARGET.*_64_Generic=y" .config | sed -r 's/.*(.*)=y/\0/')
-        if [ $DEVICE == "CONFIG_TARGET_x86_64_DEVICE_generic=y" ]; then
-         echo "NAME1=x86-64" >> $GITHUB_ENV
-        elif [ $DEVICE2 == "CONFIG_TARGET_x86_64_Generic=y" ]; then
-         echo "NAME1=x86-64" >> $GITHUB_ENV
+        DEVICE=$(awk -F '[="]+' '/TARGET_BOARD/{print $2}' .config)
+        SUBTARGET="$(awk -F '[="]+' '/TARGET_SUBTARGET/{print $2}' .config)"
+        if [ $DEVICE == "x86" ]; then
+         echo "NAME1=x86-${SUBTARGET}" >> $GITHUB_ENV
         elif [ ${{matrix.target}} == "Lede_phicomm_n1" -o ${{matrix.target}} == "Project_phicomm_n1" ];then
          echo "NAME1=n1,Vplus,Beikeyun,L1Pro,S9xxx" >> $GITHUB_ENV
-        elif [ $DEVICE != "CONFIG_TARGET_x86_64_DEVICE_generic=y" ]; then
+        elif [ $DEVICE != "x86" ]; then
          grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > NAME1
          [ -s NAME1 ] && echo "NAME1=$(cat NAME1)" >> $GITHUB_ENV
         fi
