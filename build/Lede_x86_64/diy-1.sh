@@ -10,5 +10,7 @@
 
 git clone https://github.com/esirplayground/luci-app-LingTiGameAcc package/luci-app-LingTiGameAcc
 git clone https://github.com/esirplayground/LingTiGameAcc package/LingTiGameAcc
-git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
-git clone https://github.com/garypang13/luci-app-dnsfilter package/luci-app-dnsfilter
+
+#buypass和dnsfilter  281677160大佬 已经加入了插件包   下面两行代码可删除
+#git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
+#git clone https://github.com/garypang13/luci-app-dnsfilter package/luci-app-dnsfilter
