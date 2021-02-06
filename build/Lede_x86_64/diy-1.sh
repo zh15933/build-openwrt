@@ -16,6 +16,15 @@ git clone https://github.com/esirplayground/LingTiGameAcc package/LingTiGameAcc
 git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
 #git clone https://github.com/garypang13/luci-app-dnsfilter package/luci-app-dnsfilter
 
+#拉取opemclash
+svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
+
+#拉取vssr
+git clone https://github.com/jerrykuku/luci-app-vssr package/luci-app-vssr
+
+#拉取passwall
+git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
+
 如要bypass和ssrp vssr passwall 同时编译  需要加入以下代码
 find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
 find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
