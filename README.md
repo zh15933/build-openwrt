@@ -6,4 +6,4 @@
 
 #### - 【[官方教程跳转](https://github.com/281677160/build-openwrt/blob/main/README.md)】
 
-我未对固件的root空间做出修改,如果不够用 请自行参考esir大佬的【[教程](https://www.youtube.com/watch?v=YwbwzuXKNlg&t=584s)】进行设置
+####   我未对固件的root空间做出修改,如果不够用 请参考esir大佬的【[教程](https://www.youtube.com/watch?v=YwbwzuXKNlg&t=584s)】进行设置
