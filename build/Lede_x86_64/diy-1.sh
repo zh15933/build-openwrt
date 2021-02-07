@@ -22,9 +22,6 @@ svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/l
 #拉取vssr
 git clone https://github.com/jerrykuku/luci-app-vssr package/luci-app-vssr
 
-#拉取大雕ssrp   
-git clone https://github.com/fw876/helloworld
-
 #拉取passwall
 git clone https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
 
