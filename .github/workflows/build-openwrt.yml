@@ -300,7 +300,7 @@ jobs:
     
 
 
-    - name: 电报机器人信息通知
+    - name: 固件编译完成电报通知
       run: |
         curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=我亲爱的✨主人✨您要编译的[${{ env.WXFB_MESSAGE }}]固件顺利编译完成了！
       
