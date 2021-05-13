@@ -112,11 +112,11 @@ jobs:
 #        git clone -b main --single-branch https://github.com/281677160/Custom openwrt/common
 #        chmod +x openwrt/common/* ./
     
-    - name: 公告（每次启动都读取最新内容，展开可以查看）
-      run: |
-        cd openwrt
-        echo "GITHUB_RELEASE=$(grep "https://github.com/[a-zA-Z0-9]" ${GITHUB_WORKSPACE}/.git/config | cut -c8-100)" >> $GITHUB_ENV
-        source common/common.sh && Diy_notice
+#    - name: 公告（每次启动都读取最新内容，展开可以查看）
+#      run: |
+#        cd openwrt
+#        echo "GITHUB_RELEASE=$(grep "https://github.com/[a-zA-Z0-9]" ${GITHUB_WORKSPACE}/.git/config | cut -c8-100)" >> $GITHUB_ENV
+#        source common/common.sh && Diy_notice
     
     - name: 加载源,patch补丁和自定义设置
       run: |
